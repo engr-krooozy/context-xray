@@ -18,6 +18,9 @@ the same model and tools; only the context engineering differs:
 
 Dala Wallet, its customers (Achieng, Otieno), phone numbers and transactions are fictional.
 
+**Take-home:** [ASSIGNMENT.md](ASSIGNMENT.md) is a 90-minute challenge that applies every move
+from this demo to the agent you build in Google's *ADK: Empowering with Tools* codelab.
+
 ---
 
 ## Run it
