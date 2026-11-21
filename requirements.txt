@@ -1,0 +1,4 @@
+# Tested with Python 3.11+ and this exact ADK version (ADK 2.x).
+google-adk==2.14.1
+# For running the tests
+pytest>=8

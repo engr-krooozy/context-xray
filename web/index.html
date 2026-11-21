@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context X-ray · DevFest Kisumu 2026</title>
+<link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="dots"><i class="b"></i><i class="r"></i><i class="y"></i><i class="g"></i></span>
+    <div>
+      <div class="title">Context X-ray</div>
+      <div class="subtitle">What the agent sees · DevFest Kisumu 2026</div>
+    </div>
+    <button class="engine" id="engineBtn" title="Switch between live Gemini and the offline scripted model">…</button>
+  </div>
+  <div class="controls">
+    <div class="seg" id="modeSeg" title="Which agent the next session uses">
+      <button data-mode="naive">Naive</button>
+      <button data-mode="engineered" class="on">Engineered</button>
+    </div>
+    <div class="seg" id="userSeg" title="Signed-in customer for the next session"></div>
+    <button class="btn primary" id="newSession">New session</button>
+    <button class="btn" id="fastForward" title="Add a batch of routine, already-answered exchanges to this session">Fast-forward</button>
+    <button class="btn" id="endSession" title="Run the memory pipeline on this session">End session → memory</button>
+    <button class="btn ghost" id="memoryBtn">Memory store</button>
+    <button class="btn ghost" id="saveTrace">Save trace</button>
+    <label class="btn ghost" id="loadTraceLabel">Replay trace<input type="file" id="loadTrace" accept=".json" hidden></label>
+  </div>
+</header>
+
+<div class="banner" id="banner" hidden></div>
+
+<main>
+  <section class="card chat">
+    <div class="card-head">
+      <div>
+        <h2>Conversation</h2>
+        <div class="meta" id="sessionMeta">No session yet. Pick an agent and a customer, then press New session.</div>
+      </div>
+      <div class="pins" id="pinsBox" hidden></div>
+    </div>
+    <div class="messages" id="messages"></div>
+    <div class="script" id="script"><div class="tabs" id="actTabs"></div><div id="actLines"></div></div>
+    <form class="composer" id="composer">
+      <input id="input" autocomplete="off" placeholder="Type as the customer, or pick a line from the script above">
+      <button class="btn primary" id="sendBtn" type="submit">Send</button>
+    </form>
+  </section>
+
+  <section class="card xray">
+    <div class="card-head">
+      <div>
+        <h2>What the model saw</h2>
+        <div class="meta" id="xrayMeta">Every model call is recorded right before it leaves for the API.</div>
+      </div>
+      <div class="calls" id="callPicker"></div>
+    </div>
+    <div class="xray-body" id="xrayBody">
+      <div class="empty">Send a message to see the assembled context window.</div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-head"><span>Window size on every model call this session</span><span id="tlMax"></span></div>
+      <div class="tlwrap"><div class="tl" id="timeline"></div></div>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2 id="modalTitle"></h2>
+      <button class="btn ghost" id="modalClose">Close</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script src="static/app.js"></script>
+</body>
+</html>
